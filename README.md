@@ -1,88 +1,235 @@
-C++ - Module 02
-Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form
+*This project has been created as part of the 42 curriculum by nharutyu*
+
+# C++ — Module 02
+
+**Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form**
 Version: 9.0
 
-Summary
-This repository contains the exercises for C++ Module 02. The goal is to teach
-ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form
-(default constructor, copy constructor, copy assignment operator, destructor).
+---
 
-Contents
-- I  Introduction
-- II General rules
-- III New rules
-- IV AI Instructions
-- V  Exercise 00: My First Class in Orthodox Canonical Form
-- VI Exercise 01: Towards a more useful fixed-point number class
-- VII Exercise 02: Now we’re talking
-- VIII Exercise 03: BSP
-- IX Submission and Peer-Evaluation
+# Description
 
-Introduction
-C++ is a general-purpose programming language created by Bjarne Stroustrup as an
-extension of C. These modules introduce Object-Oriented Programming using
-C++98. The exercises focus on designing classes in the Orthodox Canonical Form
-and on operator overloading and polymorphism.
+This repository contains the exercises for **C++ Module 02** of the 42 curriculum.
+The goal of this module is to introduce and practice:
 
-General rules
-- Compile with `c++` and the flags `-Wall -Wextra -Werror`.
-- Code must compile with `-std=c++98` where specified.
-- Exercise directories: `ex00`, `ex01`, `ex02`, `ex03`.
-- Class names use UpperCamelCase; files follow the class name (e.g., `BrickWall.hpp`).
-- All output lines must end with a newline and use standard output.
-- `using namespace` and `friend` are forbidden unless explicitly allowed.
-- External libraries beyond the standard library (and C++11+/Boost) are forbidden.
-- Forbidden C functions include `*printf()`, `*alloc()` and `free()`.
-- The STL is not allowed in Modules 02–07 (allowed in Modules 08–09).
-- Avoid memory leaks when using `new`.
-- From Module 02 onward, classes must follow the Orthodox Canonical Form.
-- Do not implement non-template function definitions in header files.
-- Include guards are required for headers to avoid double inclusion.
+* Ad-hoc polymorphism
+* Operator overloading
+* Orthodox Canonical Class Form
 
-New rules (Orthodox Canonical Form)
-Each class must implement:
-- Default constructor
-- Copy constructor
-- Copy assignment operator
-- Destructor
+Each exercise builds a fixed-point number class and extends it step by step with additional constructors, conversions, operator overloads, and geometric logic.
 
-AI Instructions
-- Use AI responsibly: the exercises are intended for learning and peer evaluation.
-- Do not ask AI for direct answers; use it as a guide if needed but ensure you
-	understand and can explain your code during evaluations.
+All classes follow the Orthodox Canonical Form, meaning they implement:
 
-Exercises
+* Default constructor
+* Copy constructor
+* Copy assignment operator
+* Destructor
 
-Exercise 00 — My First Class in Orthodox Canonical Form (turn-in: `ex00/`)
-Files to turn in: `Makefile`, `main.cpp`, `Fixed.hpp`, `Fixed.cpp`.
-Goal: implement a `Fixed` class that stores a fixed-point value with 8 fractional bits.
-Required members: private raw integer, static const fractional bits = 8,
-default/copy constructor, copy assignment, destructor, `getRawBits()` and `setRawBits()`.
+The final result is a reusable fixed-point number library and supporting geometry utilities.
 
-Exercise 01 — Towards a more useful fixed-point number class (turn-in: `ex01/`)
-Files to turn in: `Makefile`, `main.cpp`, `Fixed.hpp`, `Fixed.cpp`.
-Allowed: `roundf` from `<cmath>`.
-Add integer and float constructors, `toFloat()`, `toInt()`, and overload the stream
-insertion operator to print the floating-point representation.
+---
 
-Exercise 02 — Now we’re talking (turn-in: `ex02/`)
-Files to turn in: `Makefile`, `main.cpp`, `Fixed.hpp`, `Fixed.cpp`.
-Allowed: `roundf` from `<cmath>`.
-Add operator overloads for comparisons (`> < >= <= == !=`), arithmetic (`+ - * /`),
-and increment/decrement (pre/post). Implement `static` `min`/`max` overloads for
-both non-const and const references.
+# Library Details
 
-Exercise 03 — BSP (optional) (turn-in: `ex03/`)
-Files to turn in: `Makefile`, `main.cpp`, `Fixed.hpp`, `Fixed.cpp`, `Point.hpp`, `Point.cpp`, `bsp.cpp`.
-Allowed: `roundf` from `<cmath>`.
-Implement a `Point` class (with `Fixed` attributes for `x` and `y`) in Orthodox
-Canonical Form and the function `bool bsp(Point const a, Point const b, Point const c, Point const point)`
-which returns `true` if `point` is strictly inside the triangle (vertices and edges count as outside).
+## Fixed Class
 
-Turn-in checklist (per exercise)
-- `Makefile` (compiles with `c++ -Wall -Wextra -Werror`)
-- `main.cpp` (provided or written tests)
-- `Fixed.hpp`, `Fixed.cpp` (and `Point.hpp`, `Point.cpp`, `bsp.cpp` for ex03)
+The core of this module is the `Fixed` class, which represents a fixed-point number using:
 
+* A private integer raw value
+* 8 fractional bits (static constant)
+* Conversion between integer, float, and fixed-point formats
 
+### Features
 
+* Fixed-point storage with 8 fractional bits
+* Integer and float constructors
+* Conversion methods:
+
+  * `toFloat()`
+  * `toInt()`
+* Raw access methods:
+
+  * `getRawBits()`
+  * `setRawBits()`
+* Full operator overloading (comparisons and arithmetic)
+* Increment/decrement operators
+* Static `min` / `max` helpers
+
+---
+
+## Point Class (ex03)
+
+Exercise 03 adds a `Point` class:
+
+* Represents a 2D point using two `Fixed` values
+* Immutable coordinates after construction
+* Uses Orthodox Canonical Form
+
+Also includes:
+
+```
+bool bsp(Point const a, Point const b, Point const c, Point const point);
+```
+
+This function checks whether a point lies strictly inside a triangle.
+
+---
+
+# Instructions
+
+## Compilation
+
+Each exercise directory (`ex00`, `ex01`, `ex02`, `ex03`) contains its own Makefile.
+
+Compile inside an exercise folder:
+
+```bash
+make
+```
+
+Required compiler and flags:
+
+```bash
+c++ -Wall -Wextra -Werror -std=c++98
+```
+
+Available rules:
+
+```bash
+make
+make clean
+make fclean
+make re
+```
+
+---
+
+## Execution
+
+Run the compiled executable:
+
+```bash
+./program_name
+```
+
+Example:
+
+```bash
+./fixed
+```
+
+Each exercise includes a `main.cpp` with subject tests or demonstration cases.
+
+---
+
+# Project Structure
+
+```
+ex00/
+ex01/
+ex02/
+ex03/
+    Makefile
+    main.cpp
+    Fixed.hpp
+    Fixed.cpp
+    Point.hpp      (ex03)
+    Point.cpp      (ex03)
+    bsp.cpp        (ex03)
+```
+
+---
+
+# General Rules Followed
+
+* C++98 standard
+* No forbidden functions (`printf`, `malloc`, `free`, etc.)
+* No external libraries beyond the standard library
+* No STL usage (as restricted for this module)
+* No `using namespace`
+* No `friend` unless explicitly allowed
+* No non-template function implementations inside headers
+* Include guards used in all headers
+* No memory leaks
+
+---
+
+# Exercises Overview
+
+## ex00 — Orthodox Canonical Form
+
+Implementation of the basic `Fixed` class with raw value storage and canonical form methods.
+
+## ex01 — Useful Fixed-Point Class
+
+Adds:
+
+* Int and float constructors
+* Float/int conversion
+* Stream output operator overload
+
+## ex02 — Operator Overloading
+
+Adds:
+
+* Comparison operators
+* Arithmetic operators
+* Increment/decrement
+* Static min/max functions
+
+## ex03 — BSP (Optional)
+
+Adds:
+
+* `Point` class
+* BSP algorithm to detect if a point is inside a triangle
+
+---
+
+# Resources
+
+Reference materials used:
+
+* C++98 standard reference
+* cppreference documentation
+* 42 subject PDF
+* Fixed-point arithmetic articles and tutorials
+* Operator overloading guides
+
+---
+
+# AI Usage Disclosure
+
+AI tools were used as a learning aid for:
+
+* Concept explanations (fixed-point math, operator overloading)
+* Understanding Orthodox Canonical Form requirements
+* README structure and formatting guidance
+
+AI was **not used to generate final submission code**.
+All implementations were written, tested, and understood manually.
+
+---
+
+# Testing
+
+Tested with:
+
+* Subject-provided examples
+* Copy and assignment scenarios
+* Arithmetic edge cases
+* Increment/decrement behavior
+* Triangle inclusion edge cases (ex03)
+
+---
+
+# Submission Checklist
+
+Per exercise:
+
+* Makefile
+* Source files (`.cpp` / `.hpp`)
+* Test `main.cpp`
+* Compiles with required flags
+* No memory leaks
+* Orthodox Canonical Form implemented
