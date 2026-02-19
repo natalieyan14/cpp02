@@ -2,9 +2,7 @@
 
 # C++ — Module 02
 
-**Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form**
-Version: 9.0
-
+**Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form*
 ---
 
 # Description
