@@ -8,15 +8,16 @@ static Fixed	cross(Point const a, Point const b, Point const c)
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	Fixed	abc;
 	Fixed	abp;
-	Fixed	acp;
 	Fixed	bcp;
+	Fixed	cap;
+	bool	has_neg;
+	bool	has_pos;
 
-	abc = cross(a, b, c);
 	abp = cross(a, b, point);
-	acp = cross(a, c, point);
 	bcp = cross(b, c, point);
-	return ((abc > 0 && abp > 0 && acp > 0 && bcp > 0) || (abc < 0 && abp < 0
-			&& acp < 0 && bcp < 0));
+	cap = cross(c, a, point);
+	has_neg = (abp < 0) || (bcp < 0) || (cap < 0);
+	has_pos = (abp > 0) || (bcp > 0) || (cap > 0);
+	return (!(has_neg && has_pos));
 }

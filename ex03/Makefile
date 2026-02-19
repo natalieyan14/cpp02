@@ -1,10 +1,10 @@
-NAME = Orthodox_Canonical_Form_that_represents
+NAME = BSP
 
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-CPPS = main.cpp bsp.cpp Fixed.cpp Point.cpp
+CPPS = main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 HPPS = Fixed.hpp Point.hpp
 
